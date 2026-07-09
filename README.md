@@ -105,4 +105,19 @@ Once the Analyzer finds your Hotspots, what do you do?
 3. **Bump Dependencies:** Run a suite of unit tests, bump your `requirements.txt` to the latest versions, and patch the security holes.
 
 ---
+
+## 📚 Recommended Learning (Courses & Books)
+If you want to dive deeper into managing Technical Debt and writing maintainable software, here are some highly recommended resources:
+
+### 📖 Books
+1. **[Refactoring: Improving the Design of Existing Code](https://martinfowler.com/books/refactoring.html)** by *Martin Fowler* - The absolute bible on how to safely clean up messy code without breaking it.
+2. **[Clean Code: A Handbook of Agile Software Craftsmanship](https://www.oreilly.com/library/view/clean-code-a/9780136083238/)** by *Robert C. Martin (Uncle Bob)* - Essential reading for writing code that doesn't generate debt in the first place.
+3. **[Working Effectively with Legacy Code](https://www.oreilly.com/library/view/working-effectively-with/0131177052/)** by *Michael C. Feathers* - The ultimate guide for dealing with large, untested codebases (which is the definition of Technical Debt).
+
+### 🎓 Courses
+1. **[Coursera: Software Architecture](https://www.coursera.org/learn/software-architecture)** (University of Alberta) - Excellent course on architectural patterns and how to prevent architectural debt.
+2. **[Udemy: Clean Code](https://www.udemy.com/course/writing-clean-code/)** - Practical examples of writing cleaner, more maintainable code in various languages.
+3. **[Pluralsight: Managing Technical Debt](https://www.pluralsight.com/courses/managing-technical-debt)** - A specialized course on how to identify, measure, and communicate technical debt to management.
+
+---
 *Built for true software engineering observability by DARKAIS.*
