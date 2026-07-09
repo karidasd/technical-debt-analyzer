@@ -71,9 +71,38 @@ The tool will process your history and output two things:
 
 ---
 
+## 📊 Example Output
+
+When you run the tool on a messy repository, you will get an exported `debt_report.md` that looks like this:
+
+### 🔥 Top Hotspots
+| Rank | File Path | Complexity | Git Churn | TODOs | Debt Score |
+|---|---|---|---|---|---|
+| 1 | `src/api/auth.py` | 145 | 82 | 4 | **640.23** |
+| 2 | `core/database.py` | 98 | 45 | 1 | **375.14** |
+| 3 | `utils/helpers.py` | 12 | 102 | 0 | **55.62** |
+
+*(In this example, `auth.py` is an absolute disaster: highly complex and constantly changing. `helpers.py`, despite having high churn, is very simple (complexity 12), so it is not heavily penalized).*
+
+### 🛡️ Dependency Decay Monitor
+| Package | Current Version | Latest Version | Status |
+|---|---|---|---|
+| `requests` | 2.20.0 | 2.31.0 | ⚠️ Outdated |
+| `Django` | 3.2.0 | 5.0.1 | ⚠️ Outdated |
+
+---
+
 ## 🛠️ CI/CD Integration Idea
 You can integrate this script into your CI/CD pipeline (e.g., GitHub Actions). 
-Have the pipeline run `analyzer.py` on every Friday night, and if the **Debt Score** of any file exceeds a certain threshold (e.g., > 100), automatically create a GitHub Issue assigning the engineering team to refactor it!
+Have the pipeline run `analyzer.py` on every Friday night, and if the **Debt Score** of any file exceeds a certain threshold (e.g., > 300), automatically create a GitHub Issue assigning the engineering team to refactor it!
+
+---
+
+## 🩹 How to Fix the Debt
+Once the Analyzer finds your Hotspots, what do you do?
+1. **Refactor High-Scoring Files:** Break down the massive `auth.py` into smaller, single-purpose modules (Single Responsibility Principle).
+2. **Resolve Human Debt:** Dedicate a "Tech Debt Friday" to actually fixing the `# TODO` items scattered in your code.
+3. **Bump Dependencies:** Run a suite of unit tests, bump your `requirements.txt` to the latest versions, and patch the security holes.
 
 ---
 *Built for true software engineering observability by DARKAIS.*
