@@ -76,13 +76,13 @@ def analyze_repo(repo_path):
         console.print(f"[red]Error: {repo_path} is not a valid Git repository![/red]")
         sys.exit(1)
         
-    console.print(Panel.fit(f"🔍 Analyzing Technical Debt in: [bold cyan]{repo_path}[/bold cyan]"))
+    console.print(Panel.fit(f"Analyzing Technical Debt in: [bold cyan]{repo_path}[/bold cyan]"))
     
     # Find all Python files
     py_files = list(repo_path.rglob('*.py'))
     
-    # Filter out virtual environments and hidden dirs
-    py_files = [f for f in py_files if not any(part.startswith('.') or part in ('venv', 'env', '__pycache__') for part in f.parts)]
+    # Filter out virtual environments and hidden dirs (only looking at relative path)
+    py_files = [f for f in py_files if not any(part.startswith('.') or part in ('venv', 'env', '__pycache__') for part in f.relative_to(repo_path).parts)]
     
     if not py_files:
         console.print("[yellow]No python files found to analyze.[/yellow]")
@@ -127,7 +127,7 @@ def print_report(results, total_todos, repo_path):
         
     top_hotspots = results[:10]
     
-    table = Table(title="🔥 Top Technical Debt Hotspots", show_header=True, header_style="bold magenta")
+    table = Table(title="Top Technical Debt Hotspots", show_header=True, header_style="bold magenta")
     table.add_column("Rank", justify="center")
     table.add_column("File Path", style="cyan")
     table.add_column("Complexity", justify="right", style="red")
@@ -163,7 +163,7 @@ def print_report(results, total_todos, repo_path):
     with open(repo_path / 'debt_report.md', 'w', encoding='utf-8') as f:
         f.write(report_content)
         
-    console.print("\\n[green]✅ Report generated successfully at `debt_report.md`![/green]")
+    console.print("\\n[green]Report generated successfully at `debt_report.md`![/green]")
 
 if __name__ == "__main__":
     target_repo = sys.argv[1] if len(sys.argv) > 1 else "."
